@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" start-state="view-state-1" xsi:schemaLocation="http://www.springframework.org/schema/webflow                           http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+
+	<!-- Is your flow persistent? -->
+	<!-- <persistence-context />  -->
+	
+	<!-- Secure this flow for only the specified roles below -->
+    <!-- <secured attributes="ROLE_ADMIN, ROLE_USER" /> -->
+
+    <on-start>
+        <set name="flowScope.customerOrderFormBean" value="new roo.nw.model.CustomerOrderFormBean()"/>
+    </on-start>
+    <!-- A sample view state -->
+    <view-state id="view-state-1" model="customerOrderFormBean" view="customerordersflow/view-state-1">
+        <!-- A sample of expression/method calls and storing return values -->
+        <!-- <evaluate expression="someObject.getData()" result="flowScope.someObjectData" /> -->
+    	<transition on="success" to="view-state-2"/>
+    </view-state>
+    
+    <view-state id="view-state-2" model="customerOrderFormBean" view="customerordersflow/view-state-2">
+        <transition on="success" to="end-state"/>
+    </view-state>
+    
+    <!-- A sample end state -->
+    <end-state id="end-state" view="customerordersflow/end-state"/>
+    <end-state id="cancel" view="externalRedirect:/"/>
+    
+    <!-- Here you can define transitions shared for all views in the flow -->
+    <global-transitions>
+       <transition bind="false" on="cancel" to="cancel" validate="false"/>
+    </global-transitions>
+	
+</flow>

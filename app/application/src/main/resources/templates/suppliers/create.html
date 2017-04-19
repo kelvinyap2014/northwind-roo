@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-layout}">
+  <head id="head">
+
+    <title data-th-text="#{label_create_entity(#{label_supplier})}">
+      Create Supplier - Northwind - SpringRoo Application</title>
+
+    <!-- DateTimePicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css" data-th-href="@{/webjars/datetimepicker/build/jquery.datetimepicker.min.css}" />
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content">
+        <div class="container-fluid content" data-th-with="collectionLink=${@linkBuilder.of('SuppliersCollectionThymeleafController')}">
+
+          <h1 data-th-text="#{label_create_entity(#{label_supplier})}">Create Supplier</h1>
+
+          <!-- FORM -->
+          <form class="form-horizontal validate" method="POST" data-th-object="${supplier}" data-th-action="@{${collectionLink.to('create').with('supplier', supplier.id)}}">
+
+            <fieldset id="containerFields">
+              <legend class="sr-only" data-th-text="#{label_data_entity(#{label_supplier})}">Supplier data </legend>
+
+<div class="form-group has-error has-feedback" data-z="f50c6f77" id="supplier-city-field" data-th-classappend="${#fields.hasErrors('city')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('CitiesCollectionThymeleafController')}">
+    <label for="city" class="col-md-3 control-label" data-th-text="#{label_supplier_city}">City</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{city}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+          <option data-th-unless="*{city} == null" data-th-value="*{city.id}" data-th-text="*{{city}}" selected="selected">City</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('city')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('city')}" aria-hidden="true"></span>
+      <span id="city-error" class="help-block" data-th-if="${#fields.hasErrors('city')}" data-th-errors="*{city}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="33ef6a27" id="supplier-country-field" data-th-classappend="${#fields.hasErrors('country')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('CountriesCollectionThymeleafController')}">
+    <label for="country" class="col-md-3 control-label" data-th-text="#{label_supplier_country}">Country</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{country}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+          <option data-th-unless="*{country} == null" data-th-value="*{country.id}" data-th-text="*{{country}}" selected="selected">Country</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('country')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('country')}" aria-hidden="true"></span>
+      <span id="country-error" class="help-block" data-th-if="${#fields.hasErrors('country')}" data-th-errors="*{country}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="1fa3a457" id="supplier-region-field" data-th-classappend="${#fields.hasErrors('region')}? 'has-error has-feedback'" data-th-class="form-group" data-th-with="collectionLink=${@linkBuilder.of('RegionsCollectionThymeleafController')}">
+    <label for="region" class="col-md-3 control-label" data-th-text="#{label_supplier_region}">Region</label>
+    <div class="col-md-6">
+      <!-- Select2 -->
+      <select data-th-field="*{region}" class="form-control dropdown-select-ajax" data-allow-clear="true" data-data-ajax--url="${collectionLink.to('select2')}" data-ajax--cache="true" data-ajax--delay="250" data-ajax--data-type="json" data-data-placeholder="#{info_select_an_option}">
+          <option data-th-unless="*{region} == null" data-th-value="*{region.id}" data-th-text="*{{region}}" selected="selected">Region</option>
+      </select>
+      <span data-th-classappend="${#fields.hasErrors('region')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('region')}" aria-hidden="true"></span>
+      <span id="region-error" class="help-block" data-th-if="${#fields.hasErrors('region')}" data-th-errors="*{region}">Error message.</span>
+    </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="43117c07" id="supplier-companyname-field" data-th-classappend="${#fields.hasErrors('companyName')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="companyName" class="col-md-3 control-label" data-th-text="#{label_supplier_companyname}">companyName</label>
+  <div class="col-md-6">
+    <input id="companyName" name="companyName" data-th-value="*{{companyName}}" type="text" class="form-control" placeholder="companyName" data-th-placeholder="#{label_supplier_companyname}" data-toggle="tooltip" aria-describedby="companyNameStatus" />
+      <span data-th-classappend="${#fields.hasErrors('companyName')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('companyName')}" aria-hidden="true"></span>
+      <span id="companyName-error" class="help-block" data-th-if="${#fields.hasErrors('companyName')}" data-th-errors="*{companyName}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="20de43a7" id="supplier-contactname-field" data-th-classappend="${#fields.hasErrors('contactName')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="contactName" class="col-md-3 control-label" data-th-text="#{label_supplier_contactname}">contactName</label>
+  <div class="col-md-6">
+    <input id="contactName" name="contactName" data-th-value="*{{contactName}}" type="text" class="form-control" placeholder="contactName" data-th-placeholder="#{label_supplier_contactname}" data-toggle="tooltip" aria-describedby="contactNameStatus" />
+      <span data-th-classappend="${#fields.hasErrors('contactName')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('contactName')}" aria-hidden="true"></span>
+      <span id="contactName-error" class="help-block" data-th-if="${#fields.hasErrors('contactName')}" data-th-errors="*{contactName}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="510129b7" id="supplier-contacttitle-field" data-th-classappend="${#fields.hasErrors('contactTitle')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="contactTitle" class="col-md-3 control-label" data-th-text="#{label_supplier_contacttitle}">contactTitle</label>
+  <div class="col-md-6">
+    <input id="contactTitle" name="contactTitle" data-th-value="*{{contactTitle}}" type="text" class="form-control" placeholder="contactTitle" data-th-placeholder="#{label_supplier_contacttitle}" data-toggle="tooltip" aria-describedby="contactTitleStatus" />
+      <span data-th-classappend="${#fields.hasErrors('contactTitle')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('contactTitle')}" aria-hidden="true"></span>
+      <span id="contactTitle-error" class="help-block" data-th-if="${#fields.hasErrors('contactTitle')}" data-th-errors="*{contactTitle}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="e4f85667" id="supplier-address-field" data-th-classappend="${#fields.hasErrors('address')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="address" class="col-md-3 control-label" data-th-text="#{label_supplier_address}">address</label>
+  <div class="col-md-6">
+    <input id="address" name="address" data-th-value="*{{address}}" type="text" class="form-control" placeholder="address" data-th-placeholder="#{label_supplier_address}" data-toggle="tooltip" aria-describedby="addressStatus" />
+      <span data-th-classappend="${#fields.hasErrors('address')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('address')}" aria-hidden="true"></span>
+      <span id="address-error" class="help-block" data-th-if="${#fields.hasErrors('address')}" data-th-errors="*{address}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="1728dbf7" id="supplier-postalcode-field" data-th-classappend="${#fields.hasErrors('postalCode')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="postalCode" class="col-md-3 control-label" data-th-text="#{label_supplier_postalcode}">postalCode</label>
+  <div class="col-md-6">
+    <input id="postalCode" name="postalCode" data-th-value="*{{postalCode}}" type="text" class="form-control" placeholder="postalCode" data-th-placeholder="#{label_supplier_postalcode}" data-toggle="tooltip" aria-describedby="postalCodeStatus" />
+      <span data-th-classappend="${#fields.hasErrors('postalCode')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('postalCode')}" aria-hidden="true"></span>
+      <span id="postalCode-error" class="help-block" data-th-if="${#fields.hasErrors('postalCode')}" data-th-errors="*{postalCode}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="70449127" id="supplier-phone-field" data-th-classappend="${#fields.hasErrors('phone')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="phone" class="col-md-3 control-label" data-th-text="#{label_supplier_phone}">phone</label>
+  <div class="col-md-6">
+    <input id="phone" name="phone" data-th-value="*{{phone}}" type="text" class="form-control" placeholder="phone" data-th-placeholder="#{label_supplier_phone}" data-toggle="tooltip" aria-describedby="phoneStatus" />
+      <span data-th-classappend="${#fields.hasErrors('phone')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('phone')}" aria-hidden="true"></span>
+      <span id="phone-error" class="help-block" data-th-if="${#fields.hasErrors('phone')}" data-th-errors="*{phone}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="5aa49947" id="supplier-fax-field" data-th-classappend="${#fields.hasErrors('fax')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="fax" class="col-md-3 control-label" data-th-text="#{label_supplier_fax}">fax</label>
+  <div class="col-md-6">
+    <input id="fax" name="fax" data-th-value="*{{fax}}" type="text" class="form-control" placeholder="fax" data-th-placeholder="#{label_supplier_fax}" data-toggle="tooltip" aria-describedby="faxStatus" />
+      <span data-th-classappend="${#fields.hasErrors('fax')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('fax')}" aria-hidden="true"></span>
+      <span id="fax-error" class="help-block" data-th-if="${#fields.hasErrors('fax')}" data-th-errors="*{fax}">Error message.</span>
+  </div>
+</div>
+<div class="form-group has-error has-feedback" data-z="5b9d6e67" id="supplier-web-field" data-th-classappend="${#fields.hasErrors('web')}? 'has-error has-feedback'" data-th-class="form-group">
+  <label for="web" class="col-md-3 control-label" data-th-text="#{label_supplier_web}">web</label>
+  <div class="col-md-6">
+    <input id="web" name="web" data-th-value="*{{web}}" type="text" class="form-control" placeholder="web" data-th-placeholder="#{label_supplier_web}" data-toggle="tooltip" aria-describedby="webStatus" />
+      <span data-th-classappend="${#fields.hasErrors('web')}? 'glyphicon glyphicon-remove form-control-feedback'" class="glyphicon glyphicon-remove form-control-feedback" data-th-if="${#fields.hasErrors('web')}" aria-hidden="true"></span>
+      <span id="web-error" class="help-block" data-th-if="${#fields.hasErrors('web')}" data-th-errors="*{web}">Error message.</span>
+  </div>
+</div>
+            </fieldset>
+
+
+              <!-- buttons form -->
+              <div class="form-group">
+                <div class="col-md-9 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary" data-th-text="#{label_save}">Save</button>
+                    <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{${collectionLink.to('list')}} + '\''" data-th-text="#{label_reset}">Cancel</button>
+                </div>
+              </div>
+
+          </form>
+          <!-- /FORM -->
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+
+    <!-- DateTimePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js" data-th-src="@{/webjars/datetimepicker/build/jquery.datetimepicker.full.min.js}"></script>
+    <script src="../../static/public/js/datetimepicker-defaults.js" data-th-src="@{/public/js/datetimepicker-defaults.js}"></script>
+
+    <!-- jquery.inputmask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.1/jquery.inputmask.bundle.min.js" data-th-src="@{/webjars/jquery.inputmask/min/jquery.inputmask.bundle.min.js}"></script>
+    <script type="text/javascript" data-th-inline="javascript">
+					(function(jQuery) {
+						jQuery(document)
+								.ready(
+										function() {
+											Inputmask
+													.extendAliases({
+														'numeric' : {
+															'groupSeparator' : /*[[#{label_inputmask_groupSeparator}]]*/'.',
+															'radixPoint' : /*[[#{label_inputmask_radixPoint}]]*/','
+														},
+														'currency' : {
+															'prefix' : /*[[#{label_inputmask_prefix}]]*/'',
+															'suffix' : /*[[#{label_inputmask_suffix}]]*/' €'
+														}
+													});
+										});
+					})(jQuery);
+  		</script>
+    <script src="../../static/public/js/inputmask-defaults.js" data-th-src="@{/public/js/inputmask-defaults.js}"></script>
+
+    <!-- JQuery Validation -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js" data-th-src="@{/webjars/jquery-validation/dist/jquery.validate.min.js}">
+		  </script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js" data-th-src="@{/webjars/jquery-validation/dist/additional-methods.min.js}">
+			</script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_es.js" data-th-src="@{/webjars/jquery-validation/src/localization/messages_}+${#locale.language}+'.js'" data-th-if="${#locale.language} != 'en'">
+			</script>
+    <script src="../../static/public/js/validation-defaults.js" data-th-src="@{/public/js/validation-defaults.js}">
+			</script>
+
+    <script type="text/javascript" data-th-inline="javascript">
+					(function(jQuery) {
+						jQuery(document)
+								.ready(
+										function() {
+											jQuery
+													.extend(
+															jQuery.validator.messages,
+															{
+																'dateformat' : /*[[#{error_invalid_date}]]*/'Please enter a correct date/time',
+																'inputmask' : /*[[#{error_invalid_maskValue}]]*/'Please enter a valid value',
+															});
+										});
+					})(jQuery);
+		  </script>
+
+    </div>
+
+  </body>
+
+</html>

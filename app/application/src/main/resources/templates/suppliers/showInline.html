@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_supplier})}|">Show Supplier - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${supplier}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="supplier-city-field" data-z="f50c6f77">
+            	      <strong data-th-text="#{label_supplier_city}">city</strong>
+                    <span data-th-text="*{{city}}">cityValue</span>
+         	        </li>
+                  <li id="supplier-country-field" data-z="33ef6a27">
+            	      <strong data-th-text="#{label_supplier_country}">country</strong>
+                    <span data-th-text="*{{country}}">countryValue</span>
+         	        </li>
+                  <li id="supplier-region-field" data-z="1fa3a457">
+            	      <strong data-th-text="#{label_supplier_region}">region</strong>
+                    <span data-th-text="*{{region}}">regionValue</span>
+         	        </li>
+                  <li id="supplier-companyname-field" data-z="43117c07">
+            	      <strong data-th-text="#{label_supplier_companyname}">companyName</strong>
+                    <span data-th-text="*{{companyName}}">companyNameValue</span>
+         	        </li>
+                  <li id="supplier-contactname-field" data-z="20de43a7">
+            	      <strong data-th-text="#{label_supplier_contactname}">contactName</strong>
+                    <span data-th-text="*{{contactName}}">contactNameValue</span>
+         	        </li>
+                  <li id="supplier-contacttitle-field" data-z="510129b7">
+            	      <strong data-th-text="#{label_supplier_contacttitle}">contactTitle</strong>
+                    <span data-th-text="*{{contactTitle}}">contactTitleValue</span>
+         	        </li>
+                  <li id="supplier-address-field" data-z="e4f85667">
+            	      <strong data-th-text="#{label_supplier_address}">address</strong>
+                    <span data-th-text="*{{address}}">addressValue</span>
+         	        </li>
+                  <li id="supplier-postalcode-field" data-z="1728dbf7">
+            	      <strong data-th-text="#{label_supplier_postalcode}">postalCode</strong>
+                    <span data-th-text="*{{postalCode}}">postalCodeValue</span>
+         	        </li>
+                  <li id="supplier-phone-field" data-z="70449127">
+            	      <strong data-th-text="#{label_supplier_phone}">phone</strong>
+                    <span data-th-text="*{{phone}}">phoneValue</span>
+         	        </li>
+                  <li id="supplier-fax-field" data-z="5aa49947">
+            	      <strong data-th-text="#{label_supplier_fax}">fax</strong>
+                    <span data-th-text="*{{fax}}">faxValue</span>
+         	        </li>
+                  <li id="supplier-web-field" data-z="5b9d6e67">
+            	      <strong data-th-text="#{label_supplier_web}">web</strong>
+                    <span data-th-text="*{{web}}">webValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

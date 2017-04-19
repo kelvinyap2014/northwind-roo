@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_employee})}|">Show Employee - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${employee}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="employee-city-field" data-z="44b2aad9">
+            	      <strong data-th-text="#{label_employee_city}">city</strong>
+                    <span data-th-text="*{{city}}">cityValue</span>
+         	        </li>
+                  <li id="employee-country-field" data-z="1587db85">
+            	      <strong data-th-text="#{label_employee_country}">country</strong>
+                    <span data-th-text="*{{country}}">countryValue</span>
+         	        </li>
+                  <li id="employee-address-field" data-z="c690c7c5">
+            	      <strong data-th-text="#{label_employee_address}">address</strong>
+                    <span data-th-text="*{{address}}">addressValue</span>
+         	        </li>
+                  <li id="employee-postalcode-field" data-z="e21985d9">
+            	      <strong data-th-text="#{label_employee_postalcode}">postalCode</strong>
+                    <span data-th-text="*{{postalCode}}">postalCodeValue</span>
+         	        </li>
+                  <li id="employee-phone-field" data-z="1565c205">
+            	      <strong data-th-text="#{label_employee_phone}">phone</strong>
+                    <span data-th-text="*{{phone}}">phoneValue</span>
+         	        </li>
+                  <li id="employee-region-field" data-z="1ea88f39">
+            	      <strong data-th-text="#{label_employee_region}">region</strong>
+                    <span data-th-text="*{{region}}">regionValue</span>
+         	        </li>
+                  <li id="employee-firstname-field" data-z="1626c585">
+            	      <strong data-th-text="#{label_employee_firstname}">firstName</strong>
+                    <span data-th-text="*{{firstName}}">firstNameValue</span>
+         	        </li>
+                  <li id="employee-lastname-field" data-z="6a3fdb39">
+            	      <strong data-th-text="#{label_employee_lastname}">lastName</strong>
+                    <span data-th-text="*{{lastName}}">lastNameValue</span>
+         	        </li>
+                  <li id="employee-title-field" data-z="f1dcccc5">
+            	      <strong data-th-text="#{label_employee_title}">title</strong>
+                    <span data-th-text="*{{title}}">titleValue</span>
+         	        </li>
+                  <li id="employee-birthdate-field" data-z="ed569745">
+            	      <strong data-th-text="#{label_employee_birthdate}">birthDate</strong>
+                    <span data-th-text="*{{birthDate}}">birthDateValue</span>
+         	        </li>
+                  <li id="employee-hiredate-field" data-z="47bd8f19">
+            	      <strong data-th-text="#{label_employee_hiredate}">hireDate</strong>
+                    <span data-th-text="*{{hireDate}}">hireDateValue</span>
+         	        </li>
+                  <li id="employee-extension-field" data-z="eae908e5">
+            	      <strong data-th-text="#{label_employee_extension}">extension</strong>
+                    <span data-th-text="*{{extension}}">extensionValue</span>
+         	        </li>
+                  <li id="employee-photo-field" data-z="1568b985">
+            	      <strong data-th-text="#{label_employee_photo}">photo</strong>
+                    <span data-th-text="*{{photo}}">photoValue</span>
+         	        </li>
+                  <li id="employee-notes-field" data-z="b4c8e3a5">
+            	      <strong data-th-text="#{label_employee_notes}">notes</strong>
+                    <span data-th-text="*{{notes}}">notesValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_purchaseorder})}|">Show PurchaseOrder - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${purchaseOrder}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="purchaseorder-employee-field" data-z="6103af82">
+            	      <strong data-th-text="#{label_purchaseorder_employee}">employee</strong>
+                    <span data-th-text="*{{employee}}">employeeValue</span>
+         	        </li>
+                  <li id="purchaseorder-product-field" data-z="bd05113c">
+            	      <strong data-th-text="#{label_purchaseorder_product}">product</strong>
+                    <span data-th-text="*{{product}}">productValue</span>
+         	        </li>
+                  <li id="purchaseorder-unitcost-field" data-z="5231342">
+            	      <strong data-th-text="#{label_purchaseorder_unitcost}">unitCost</strong>
+                    <span data-th-text="*{{unitCost}}">unitCostValue</span>
+         	        </li>
+                  <li id="purchaseorder-quantity-field" data-z="ee4b67e2">
+            	      <strong data-th-text="#{label_purchaseorder_quantity}">quantity</strong>
+                    <span data-th-text="*{{quantity}}">quantityValue</span>
+         	        </li>
+                  <li id="purchaseorder-orderdate-field" data-z="f2c7147c">
+            	      <strong data-th-text="#{label_purchaseorder_orderdate}">orderDate</strong>
+                    <span data-th-text="*{{orderDate}}">orderDateValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

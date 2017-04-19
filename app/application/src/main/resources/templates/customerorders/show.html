@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+  <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_customerorder})}|">Show CustomerOrder - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-layout-fragment="content" data-th-object="${customerOrder}">
+        <div class="container-fluid content">
+
+          <!-- CONTENT -->
+          <h1 data-th-text="#{label_show_entity(#{label_customerorder})}">Show CustomerOrder</h1>
+
+            <div id="mainEntityFieldSet">
+              <h2 data-th-text="#{label_data_entity(#{label_customerorder})}">CustomerOrder data</h2>
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="customerorder-city-field" data-z="9e493e65">
+            	      <strong data-th-text="#{label_customerorder_city}">city</strong>
+                    <span data-th-text="*{{city}}">cityValue</span>
+         	        </li>
+                  <li id="customerorder-country-field" data-z="8f440c79">
+            	      <strong data-th-text="#{label_customerorder_country}">country</strong>
+                    <span data-th-text="*{{country}}">countryValue</span>
+         	        </li>
+                  <li id="customerorder-customer-field" data-z="47061905">
+            	      <strong data-th-text="#{label_customerorder_customer}">customer</strong>
+                    <span data-th-text="*{{customer}}">customerValue</span>
+         	        </li>
+                  <li id="customerorder-orderdate-field" data-z="d5703559">
+            	      <strong data-th-text="#{label_customerorder_orderdate}">orderDate</strong>
+                    <span data-th-text="*{{orderDate}}">orderDateValue</span>
+         	        </li>
+                  <li id="customerorder-requireddate-field" data-z="ab4da045">
+            	      <strong data-th-text="#{label_customerorder_requireddate}">requiredDate</strong>
+                    <span data-th-text="*{{requiredDate}}">requiredDateValue</span>
+         	        </li>
+                  <li id="customerorder-shippeddate-field" data-z="711d2a39">
+            	      <strong data-th-text="#{label_customerorder_shippeddate}">shippedDate</strong>
+                    <span data-th-text="*{{shippedDate}}">shippedDateValue</span>
+         	        </li>
+                  <li id="customerorder-freight-field" data-z="e6c94ad9">
+            	      <strong data-th-text="#{label_customerorder_freight}">freight</strong>
+                    <span data-th-text="*{{freight}}">freightValue</span>
+         	        </li>
+                  <li id="customerorder-shipname-field" data-z="cebbcc05">
+            	      <strong data-th-text="#{label_customerorder_shipname}">shipName</strong>
+                    <span data-th-text="*{{shipName}}">shipNameValue</span>
+         	        </li>
+                  <li id="customerorder-shipaddress-field" data-z="d511e319">
+            	      <strong data-th-text="#{label_customerorder_shipaddress}">shipAddress</strong>
+                    <span data-th-text="*{{shipAddress}}">shipAddressValue</span>
+         	        </li>
+                  <li id="customerorder-shippostalcode-field" data-z="c464ba05">
+            	      <strong data-th-text="#{label_customerorder_shippostalcode}">shipPostalCode</strong>
+                    <span data-th-text="*{{shipPostalCode}}">shipPostalCodeValue</span>
+         	        </li>
+                  <li id="customerorder-status-field" data-z="32d74805">
+            	      <strong data-th-text="#{label_customerorder_status}">status</strong>
+                    <span data-th-text="*{{status}}">statusValue</span>
+         	        </li>
+                  <li id="customerorder-shipphone-field" data-z="825da259">
+            	      <strong data-th-text="#{label_customerorder_shipphone}">shipPhone</strong>
+                    <span data-th-text="*{{shipPhone}}">shipPhoneValue</span>
+         	        </li>
+                  <li id="customerorder-invoicedate-field" data-z="56376f9">
+            	      <strong data-th-text="#{label_customerorder_invoicedate}">invoiceDate</strong>
+                    <span data-th-text="*{{invoiceDate}}">invoiceDateValue</span>
+         	        </li>
+                  <li id="customerorder-closedate-field" data-z="d698a819">
+            	      <strong data-th-text="#{label_customerorder_closedate}">closeDate</strong>
+                    <span data-th-text="*{{closeDate}}">closeDateValue</span>
+         	        </li>
+                  <li id="customerorder-employee-field" data-z="ec747f05">
+            	      <strong data-th-text="#{label_customerorder_employee}">employee</strong>
+                    <span data-th-text="*{{employee}}">employeeValue</span>
+         	        </li>
+                  <li id="customerorder-region-field" data-z="6ce86fc5">
+            	      <strong data-th-text="#{label_customerorder_region}">region</strong>
+                    <span data-th-text="*{{region}}">regionValue</span>
+         	        </li>
+                  <li id="customerorder-shipper-field" data-z="7c2a7f19">
+            	      <strong data-th-text="#{label_customerorder_shipper}">shipper</strong>
+                    <span data-th-text="*{{shipper}}">shipperValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+
+          <div class="clearfix">
+            <div class="pull-right">
+             <a id="CustomerOrder_edit" href="edit.html" class="btn btn-primary" data-th-title="#{label_goEdit}" data-th-href="${@linkBuilder.of('CustomerOrdersItemThymeleafController').to('editForm').with('customerOrder', customerOrder.id)}" data-th-text="#{label_edit}">Edit</a>
+            </div>
+          </div>
+
+
+          <div class="clearfix">
+            <div class="pull-left">
+              <a id="CustomerOrder_list" href="list.html" class="btn btn-default" data-th-title="#{label_goBack}" data-th-href="${@linkBuilder.of('CustomerOrdersCollectionThymeleafController').to('list')}">
+  	             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  	             <span data-th-text="#{label_back}">Back</span>
+  	          </a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>

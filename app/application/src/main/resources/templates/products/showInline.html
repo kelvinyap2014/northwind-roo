@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{layouts/default-list-layout}">
+    <head id="head">
+
+    <title data-th-text="|#{label_show_entity(#{label_product})}|">Show Product - Spring Roo application</title>
+
+  </head>
+
+  <body id="body">
+
+    <header role="banner">
+      <!-- Content replaced by layout of the page displayed -->
+    </header>
+
+    <!--CONTAINER-->
+    <div class="container bg-container">
+      <!-- CONTENT -->
+      <!--
+        Only the inner content of the following tag "section" is included
+        within the template, in the section "content"
+      -->
+      <section data-th-fragment="inline-content" data-layout-fragment="content" data-th-object="${product}">
+        <div>
+
+          <!-- CONTENT -->
+            <div id="mainEntityFieldSet">
+              <ul class="list-unstyled" id="containerFields">
+                  <li id="product-category-field" data-z="e42388c4">
+            	      <strong data-th-text="#{label_product_category}">category</strong>
+                    <span data-th-text="*{{category}}">categoryValue</span>
+         	        </li>
+                  <li id="product-name-field" data-z="ec27e5a4">
+            	      <strong data-th-text="#{label_product_name}">name</strong>
+                    <span data-th-text="*{{name}}">nameValue</span>
+         	        </li>
+                  <li id="product-code-field" data-z="d98f0164">
+            	      <strong data-th-text="#{label_product_code}">code</strong>
+                    <span data-th-text="*{{code}}">codeValue</span>
+         	        </li>
+                  <li id="product-quantityperunit-field" data-z="135ff1da">
+            	      <strong data-th-text="#{label_product_quantityperunit}">quantityPerUnit</strong>
+                    <span data-th-text="*{{quantityPerUnit}}">quantityPerUnitValue</span>
+         	        </li>
+                  <li id="product-unitcost-field" data-z="84e47684">
+            	      <strong data-th-text="#{label_product_unitcost}">unitCost</strong>
+                    <span data-th-text="*{{unitCost}}">unitCostValue</span>
+         	        </li>
+                  <li id="product-unitprice-field" data-z="e22da01a">
+            	      <strong data-th-text="#{label_product_unitprice}">unitPrice</strong>
+                    <span data-th-text="*{{unitPrice}}">unitPriceValue</span>
+         	        </li>
+                  <li id="product-unitsinstock-field" data-z="21457d84">
+            	      <strong data-th-text="#{label_product_unitsinstock}">unitsInStock</strong>
+                    <span data-th-text="*{{unitsInStock}}">unitsInStockValue</span>
+         	        </li>
+                  <li id="product-reorderlevel-field" data-z="13f4e4c4">
+            	      <strong data-th-text="#{label_product_reorderlevel}">reorderLevel</strong>
+                    <span data-th-text="*{{reorderLevel}}">reorderLevelValue</span>
+         	        </li>
+                  <li id="product-discontinued-field" data-z="eddd5824">
+            	      <strong data-th-text="#{label_product_discontinued}">discontinued</strong>
+                    <span data-th-text="*{{discontinued}}">discontinuedValue</span>
+         	        </li>
+                  <li id="product-supplier-field" data-z="def2704">
+            	      <strong data-th-text="#{label_product_supplier}">supplier</strong>
+                    <span data-th-text="*{{supplier}}">supplierValue</span>
+         	        </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </section>
+      <!-- /CONTENT -->
+  </div>
+  <!-- /CONTAINER -->
+
+  <footer class="container">
+    <!-- Content replaced by layout of the page displayed -->
+  </footer>
+
+  <!-- JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so that the pages load faster -->
+  <!-- JavaScript loaded by layout of the page displayed -->
+  <!--
+       Only the inner content of the following tag "javascript" is included
+       within the template, in the div "javascript"
+      -->
+  <div data-layout-fragment="javascript">
+  </div>
+
+  </body>
+
+</html>
