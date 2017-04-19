@@ -1,0 +1,365 @@
+// This file is part of Spring Roo. It is modified thereafter.
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+/////////////////
+
+// Project setup
+/////////////////
+
+// Create the Spring Boot application
+project setup --topLevelPackage roo.nw --projectName Northwind --java 8 --multimodule
+
+// Configure the project settings
+settings add --name spring.roo.jpa.require.schema-object-name --value true
+
+// Setup the data access layer
+jpa setup --provider HIBERNATE --database HYPERSONIC_PERSISTENT
+jpa setup --provider HIBERNATE --database H2_IN_MEMORY --profile dev
+
+// The domain model
+////////////////////
+
+module focus --moduleName model
+
+// Enumerations
+
+enum type --class ~.Period
+enum constant --name QUARTERLY --class ~.Period
+enum constant --name ANNUAL --class ~.Period
+
+enum type --class ~.Status
+enum constant --name NEWLY --class ~.Status
+enum constant --name SEND_BILL --class ~.Status
+enum constant --name SENT --class ~.Status
+enum constant --name CLOSED --class ~.Status
+enum constant --name CANCELED --class ~.Status
+
+enum type --class ~.Trimester
+enum constant --name FIRST_TRIM --class ~.Trimester
+enum constant --name SECOND_TRIM --class ~.Trimester
+enum constant --name THIRD_TRIM --class ~.Trimester
+enum constant --name FOURTH_TRIM --class ~.Trimester
+
+// The JPA entities
+
+entity jpa --class ~.City --table NW_CITIES --sequenceName NW_CITIES_CITY_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn CITY_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --readOnly
+
+entity jpa --class ~.Country --table NW_COUNTRIES --sequenceName NW_COUNTRIES_COUNTRY_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn COUNTRY_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --readOnly
+
+entity jpa --class ~.Region --table NW_REGIONS --sequenceName NW_REGIONS_REGION_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn REGION_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --readOnly
+
+/// Read-write entities
+
+entity jpa --class ~.Category --table NW_CATEGORIES --sequenceName NW_CATEGORIES_CATEGORY_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn CATEGORY_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --entityFormatExpression #{name}
+
+// Entity format with localization message, which will be shown as entity info on view fields. 
+// The message should be edited by developer with a localized SpEL expression like "Ship name: #{shipName}"
+entity jpa --class ~.CustomerOrder --table NW_CUSTOMER_ORDERS --sequenceName NW_CUSTOMER_ORDERS_CUSTOMER_ORDER_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn CUSTOMER_ORDER_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --entityFormatMessage customerorder_format
+
+entity jpa --class ~.OrderDetail --table NW_ORDER_DETAILS --sequenceName NW_ORDER_DETAILS_ORDER_DETAIL_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn ORDER_DETAIL_ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+entity jpa --class ~.Party --table NW_PARTIES --sequenceName NW_PARTIES_PARTY_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn PARTY_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --inheritanceType JOINED
+
+// Entity format example. This SpEL expression result will be shown as entity info on view fields
+entity jpa --class ~.Product --table NW_PRODUCTS --sequenceName NW_PRODUCTS_PRODUCT_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn PRODUCT_ID --versionField version --versionType java.lang.Long --versionColumn VERSION --entityFormatExpression "#{name} #{code}"
+
+entity jpa --class ~.PurchaseOrder --table NW_PURCHASE_ORDERS --sequenceName NW_PURCHASE_ORDERS_PURCHASE_ORDER_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn PURCHASE_ORDER_ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+entity jpa --class ~.Report --table NW_REPORTS --sequenceName NW_REPORTS_REPORT_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn REPORT_ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+entity jpa --class ~.Shipper --table NW_SHIPPERS --sequenceName NW_SHIPPERS_SHIPPER_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn SHIPPER_ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+entity jpa --class ~.SoldProduct --table NW_SOLD_PRODUCT_VIEW --sequenceName NW_SHIPPERS_SHIPPER_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+entity jpa --class ~.Store --table NW_STORES --sequenceName NW_STORES_STORE_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn STORE_ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+entity jpa --class ~.Supplier --table NW_SUPPLIERS --sequenceName NW_SUPPLIERS_SUPPLIER_ID_SEQ --identifierStrategy SEQUENCE --identifierColumn SUPPLIER_ID --versionField version --versionType java.lang.Long --versionColumn VERSION
+
+/// Entity inheritance (identifierColumn still mandatory, but overrided)
+entity jpa --class ~.Customer --table NW_CUSTOMERS --extends ~.Party --identifierColumn PARTY_ID --sequenceName NW_CUSTOMERS_CUSTOMER_ID_SEQ --identifierStrategy SEQUENCE --versionField version --versionType java.lang.Long --versionColumn VERSION --force
+
+entity jpa --class ~.Employee --table NW_EMPLOYEES --extends ~.Party --identifierColumn PARTY_ID --sequenceName NW_EMPLOYEES_EMPLOYEE_ID_SEQ --identifierStrategy SEQUENCE --versionField version --versionType java.lang.Long --versionColumn VERSION --force
+
+/// Entity attributes and relationships
+focus --class ~.Category
+field string --fieldName name --column NAME
+field string --fieldName description --column DESCRIPTION
+field set --fieldName products --type ~.Product --mappedBy category --joinColumnName CATEGORY
+
+focus --class ~.City
+field string --fieldName description --column DESCRIPTION
+field set --fieldName parties --type ~.Party --mappedBy city --joinColumnName CITY
+field set --fieldName customerOrders --type ~.CustomerOrder --mappedBy city --joinColumnName CITY
+field set --fieldName stores --type ~.Store --mappedBy city --joinColumnName CITY
+field set --fieldName suppliers --type ~.Supplier --mappedBy city --joinColumnName CITY
+
+focus --class ~.Country
+field string --fieldName description --column DESCRIPTION
+field set --fieldName parties --type ~.Party --mappedBy country --joinColumnName COUNTRY
+field set --fieldName regions --type ~.Region --mappedBy country --joinColumnName COUNTRY
+field set --fieldName customerOrders --type ~.CustomerOrder --mappedBy country --joinColumnName COUNTRY
+field set --fieldName stores --type ~.Store --mappedBy country --joinColumnName COUNTRY
+field set --fieldName suppliers --type ~.Supplier --mappedBy country --joinColumnName COUNTRY
+
+focus --class ~.Customer
+field string --fieldName companyName --column COMPANY_NAME
+field string --fieldName contactName --column CONTACT_NAME
+field string --fieldName contactTitle --column CONTACT_TITLE
+field string --fieldName fax --column FAX
+field string --fieldName email --column EMAIL
+field set --fieldName customerOrders --type ~.CustomerOrder --mappedBy customer --joinColumnName CUSTOMER
+
+focus --class ~.CustomerOrder
+field date --fieldName orderDate --type java.util.Calendar --column ORDER_DATE --persistenceType JPA_TIMESTAMP
+field date --fieldName requiredDate --type java.util.Calendar --column REQUIRED_DATE --persistenceType JPA_TIMESTAMP
+field date --fieldName shippedDate --type java.util.Calendar --column SHIPPED_DATE --persistenceType JPA_TIMESTAMP
+field number --fieldName freight --type java.math.BigDecimal --column FREIGHT
+field string --fieldName shipName --column SHIP_NAME
+field string --fieldName shipAddress --column SHIP_ADDRESS
+field string --fieldName shipPostalCode --column SHIP_POSTAL_CODE
+field enum --fieldName status --type ~.Status --column STATUS --enumType STRING
+field string --fieldName shipPhone --column SHIP_PHONE
+field date --fieldName invoiceDate --type java.util.Calendar --column INVOICE_DATE --persistenceType JPA_TIMESTAMP
+field date --fieldName closeDate --type java.util.Calendar --column CLOSE_DATE --persistenceType JPA_TIMESTAMP
+field set --fieldName orderDetails --type ~.OrderDetail --mappedBy customerOrder --joinColumnName CUSTOMER_ORDER
+
+focus --class ~.Employee
+field string --fieldName firstName --column FIRST_NAME
+field string --fieldName lastName --column LAST_NAME
+field string --fieldName title --column TITLE
+field date --fieldName birthDate --type java.util.Calendar --column BIRTH_DATE --persistenceType JPA_TIMESTAMP
+field date --fieldName hireDate --type java.util.Calendar --column HIRE_DATE --persistenceType JPA_TIMESTAMP
+field string --fieldName extension --column EXTENSION
+field string --fieldName photo --column PHOTO --lob
+field string --fieldName notes --column NOTES
+
+//// Commented until reactivation of reflexive relationships
+//field set --fieldName employees --type ~.Employee --mappedBy supervisor
+field set --fieldName purchaseOrders --type ~.PurchaseOrder --mappedBy employee --joinColumnName EMPLOYEE
+field set --fieldName customerOrders --type ~.CustomerOrder --mappedBy employee --joinColumnName EMPLOYEE
+
+focus --class ~.OrderDetail
+field number --fieldName unitPrice --type java.math.BigDecimal --column UNIT_PRICE
+field number --fieldName quantity --type java.lang.Integer --column QUANTITY
+field number --fieldName discount --type java.math.BigDecimal --column DISCOUNT
+
+focus --class ~.Party
+field string --fieldName address --column ADDRESS
+field string --fieldName postalCode --column POSTAL_CODE
+field string --fieldName phone --column PHONE
+
+focus --class ~.Product
+field string --fieldName name --column NAME
+field string --fieldName code --column CODE
+field string --fieldName quantityPerUnit --column QUANTITY_PER_UNIT
+field number --fieldName unitCost --type java.math.BigDecimal --column UNIT_COST
+field number --fieldName unitPrice --type java.math.BigDecimal --column UNIT_PRICE
+field number --fieldName unitsInStock --type java.lang.Integer --column UNITS_IN_STOCK
+field number --fieldName reorderLevel --type java.lang.Integer --column REORDER_LEVEL
+field other --fieldName discontinued --type java.lang.Boolean --column DISCONTINUED
+field set --fieldName purchaseOrders --type ~.PurchaseOrder --mappedBy product --joinColumnName PRODUCT
+field set --fieldName orderDetails --type ~.OrderDetail --mappedBy product --joinColumnName PRODUCT
+
+focus --class ~.PurchaseOrder
+field number --fieldName unitCost --type java.math.BigDecimal --column UNIT_COST
+field number --fieldName quantity --type java.lang.Integer --column QUANTITY
+field date --fieldName orderDate --type java.util.Calendar --column ORDER_DATE --persistenceType JPA_TIMESTAMP
+
+focus --class ~.Region
+field string --fieldName description --column DESCRIPTION
+field set --fieldName cities --type ~.City --mappedBy region --joinColumnName REGION
+field set --fieldName parties --type ~.Party --mappedBy region --joinColumnName REGION
+field set --fieldName customerOrders --type ~.CustomerOrder --mappedBy region --joinColumnName REGION
+field set --fieldName stores --type ~.Store --mappedBy region --joinColumnName REGION
+field set --fieldName suppliers --type ~.Supplier --mappedBy region --joinColumnName REGION
+
+focus --class ~.Report
+field string --fieldName type --column TYPE
+
+focus --class ~.Shipper
+field string --fieldName companyName --column COMPANY_NAME
+field string --fieldName phone --column PHONE
+field set --fieldName customerOrders --type ~.CustomerOrder --mappedBy shipper --joinColumnName SHIPPER
+
+focus --class ~.Store
+field string --fieldName name --column NAME
+field string --fieldName address --column ADDRESS
+field string --fieldName postalCode --column POSTAL_CODE
+field string --fieldName phone --column PHONE
+
+focus --class ~.Supplier
+field string --fieldName companyName --column COMPANY_NAME
+field string --fieldName contactName --column CONTACT_NAME
+field string --fieldName contactTitle --column CONTACT_TITLE
+field string --fieldName address --column ADDRESS
+field string --fieldName postalCode --column POSTAL_CODE
+field string --fieldName phone --column PHONE
+field string --fieldName fax --column FAX
+field string --fieldName web --column WEB
+field set --fieldName products --type ~.Product --mappedBy supplier --joinColumnName SUPPLIER
+
+//// Many to many relation with --joinTable and associated parameters
+field set --fieldName stores --type ~.Store --cardinality MANY_TO_MANY --joinTable NW_SUPPLIER_STORES --joinColumns STORE --referencedColumns STORE_ID --inverseJoinColumns SUPPLIER --inverseReferencedColumns SUPPLIER_ID
+
+// Form Bean DTOs
+
+dto --class ~.ShipperPhoneFormBean
+field string --fieldName phone
+
+dto --class ~.CustomerOrderFormBean --serializable
+field number --fieldName orderId --type java.lang.Long
+field number --fieldName employeeId --type java.lang.Long
+field number --fieldName customerId --type java.lang.Long
+field date --fieldName orderDate --type java.util.Calendar
+field string --fieldName employeeName
+field string --fieldName customerCompanyName
+field other --fieldName status --type ~.Status
+field date --fieldName shippedDate --type java.util.Calendar
+field number --fieldName freight --type java.math.BigDecimal
+
+// The data access layer
+/////////////////////////
+
+// Entity projection with expression for view layer visualization. Only fields specified in 
+// the expression will be shown in selectors
+entity projection --class model:~.CustomerInfo --entity model:~.Customer --fields id,companyName,email,fax --entityFormatExpression #{companyName}
+// When projection is used as default return type in repositories, the default lists will 
+// show only the projection fields, not entity fields
+repository jpa --entity model:~.Customer --interface repository:~.CustomerRepository --defaultReturnType model:~.CustomerInfo
+
+// Create remaining Spring Data repositories for all entities
+repository jpa --all
+
+// Default queries
+finder add --entity model:~.Shipper --name findByCompanyName
+finder add --entity model:~.Region --name findByCountryIdOrderByDescriptionAsc
+finder add --entity model:~.City --name findByRegionIdOrderByDescriptionAsc
+finder add --entity model:~.Product --name findByDiscontinuedOrderByNameAsc
+finder add --entity model:~.Shipper --name findByPhone --formBean model:~.ShipperPhoneFormBean
+
+// The service layer
+//////////////////////
+
+// Service API and Implementation
+service --all
+
+// The view layer
+//////////////////
+
+// Spring MVC setup
+web mvc setup
+
+// JSON Rest controllers
+web mvc controller --all --responseType JSON --pathPrefix /api
+
+// THYMELEAF views
+web mvc view setup --type THYMELEAF
+
+/// Include templates inside generated project to allow developers to customize them
+web mvc templates setup --type THYMELEAF
+
+/// Thymeleaf controllers
+
+//// Main controllers
+web mvc controller --entity model:~.Category --responseType THYMELEAF
+web mvc controller --entity model:~.Country --responseType THYMELEAF
+web mvc controller --entity model:~.CustomerOrder --responseType THYMELEAF
+web mvc controller --entity model:~.Customer --responseType THYMELEAF
+web mvc controller --entity model:~.Employee --responseType THYMELEAF
+web mvc controller --entity model:~.Product --responseType THYMELEAF
+web mvc controller --entity model:~.Shipper --responseType THYMELEAF
+web mvc controller --entity model:~.SoldProduct --responseType THYMELEAF
+web mvc controller --entity model:~.Store --responseType THYMELEAF
+web mvc controller --entity model:~.Supplier --responseType THYMELEAF
+web mvc controller --entity model:~.City --responseType THYMELEAF
+web mvc controller --entity model:~.Region --responseType THYMELEAF
+web mvc controller --entity model:~.PurchaseOrder --responseType THYMELEAF
+
+//// Relationship controllers
+web mvc detail --entity model:~.Category --field products --responseType THYMELEAF
+web mvc detail --entity model:~.Category --responseType THYMELEAF --field products.purchaseOrders
+web mvc detail --entity model:~.Product --field purchaseOrders --responseType THYMELEAF
+web mvc detail --entity model:~.Country --responseType THYMELEAF --field regions
+web mvc detail --entity model:~.Country --responseType THYMELEAF --field regions.cities
+web mvc detail --entity model:~.Region --responseType THYMELEAF --field cities
+
+//// Search controllers
+web mvc finder --all --responseType THYMELEAF
+
+//// Create web flow
+web flow --flowName customerOrdersFlow --class ~.CustomerOrderFormBean 
+
+// Integration layer
+////
+
+//// Create SOAP Service that will be available under "/services" URL
+ws endpoint --service service-api:~.CategoryService --sei application:~.ws.api.CategoryWebService --class application:~.ws.endpoint.CategoryWebServiceEndpoint --config application:~.config.WsEndpointsConfiguration
+
+//// Email support
+email sender setup --service service-impl:~.CustomerServiceImpl --username USERNAME --password PASSWORD --host HOST --port 1000 --protocol PROTOCOL  --starttls true
+email receiver setup --service service-impl:~.EmployeeServiceImpl --username USERNAME --password PASSWORD --host HOST --port 1000 --protocol PROTOCOL  --starttls true
+
+//// Cache support
+cache setup --provider GUAVA
+
+// The security layer
+//////////////////////
+
+// Spring security setup
+security setup --provider SPRINGLETS_JPA
+
+// Method security
+
+/// Restrict delete method to user with roles ADMIN or EMPLEADO
+security authorize --class service-api:~.CustomerService --method delete --roles ADMIN,EMPLEADO
+
+// Auditing
+
+jpa audit setup
+
+/// Add audit to Category entity
+// Disabled until #20828 is solved
+jpa audit add --entity model:~.Category --createdDateColumn CREATED_DATE --modifiedDateColumn MODIFIED_DATE --createdByColumn CREATED_BY --modifiedByColumn MODIFIED_BY
+
+// The infraestructure layer
+/////////////////////////////
+
+// Unit tests
+test unit --class model:~.CustomerOrder
+test unit --class model:~.Category
+test unit --class model:~.Product
+
+// Repository integration tests
+test integration --class repository:~.CategoryRepository
+test integration --class repository:~.CityRepository
+test integration --class repository:~.CountryRepository
+test integration --class repository:~.CustomerOrderRepository
+test integration --class repository:~.CustomerRepository
+test integration --class repository:~.EmployeeRepository
+test integration --class repository:~.OrderDetailRepository
+test integration --class repository:~.PartyRepository
+test integration --class repository:~.ProductRepository
+test integration --class repository:~.PurchaseOrderRepository
+test integration --class repository:~.RegionRepository
+test integration --class repository:~.ReportRepository
+test integration --class repository:~.ShipperRepository
+test integration --class repository:~.SoldProductRepository
+test integration --class repository:~.StoreRepository
+test integration --class repository:~.SupplierRepository
+
+// Controller integration tests
+test integration --class application:~.web.CustomerOrdersCollectionThymeleafController
+test integration --class application:~.web.CountriesItemRegionsThymeleafController
+test integration --class application:~.web.CategoriesItemThymeleafController
+test integration --class application:~.web.PurchaseOrdersItemJsonController
+test integration --class application:~.web.OrderDetailsCollectionJsonController

@@ -1,0 +1,20 @@
+======================================================================
+LEGAL NOTICES
+======================================================================
+
+All code in this project is original work, except as disclosed below.
+
+-----------------------------------------------------------------------
+
+Licensed Software: Spring Roo
+Software Web Site: http://projects.spring.io/spring-roo/
+Effective License: Apache License, Version 2.0
+License Info Page: http://www.apache.org/licenses/LICENSE-2.0.html
+
+A file named resources/upstream/northwind-multimodule.roo is taken
+from Spring Roo and modified thereafter. The initial version of this
+project is generated from this file using Spring Roo.
+
+-----------------------------------------------------------------------
+
+[end]
