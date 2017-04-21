@@ -1,0 +1,5 @@
+language: java
+jdk: oraclejdk8
+script: cd app && mvn test
+notifications:
+  email: false
