@@ -1,2 +1,2 @@
-# northwind-roo
+# northwind-roo  [![build status](https://travis-ci.org/kelvinyap2014/northwind-roo.svg?branch=master)](https://travis-ci.org/kelvinyap2014/northwind-roo/branches)   [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/)
 This is an academic research project of [Northwind database](http://old.wiki.remobjects.com/wiki/Northwind_database) implemented with Spring Roo, Spring Boot and CI/ CD deployment automation.
