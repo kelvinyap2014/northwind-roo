@@ -1,5 +1,17 @@
 language: java
 jdk: oraclejdk8
-script: cd app && ./mvnw test
+
+before_script:
+  - chmod +x ./travis.sh
+script:
+  - ./travis.sh
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
 notifications:
   email: false
+env:
+  global:
+    secure: lbgsenuX6zfDBKq4C1PIRC/xVbiGG4ijprub2YkXcOYamb4inLyJgkhsU04pRLrrGQaoOW0KaHUV+hcQDdisq2rJRFaitJrJQJF55TOGjcYefX8nPqauOTObKBwylY5nXMBqlol3cginBk1iCVDJGi/iceiSrRosCJyGdpqDCfzSnKeBzlxNeBS4jO0Nxf6y6jA/VuNnKJ7bh6gAKRuRUeaeLpC848TxDKkVYGTqKDGstPcVu2GYdSY7gHJd/sgRc64ENy2k8sQHgwjWXJK4L1yKkGGG0MOpSeeDDabbTwtTEL2OXFQNSCgIyhaKGZYYauJQaB73vKzqalJOXclz2pL7I6celX0o2MBrCgGLayY+OCcIRvbppAYtPS/yjEegN9OGQ9Tt76EOcJbhMF8Dm7mrWyrl/Eoho5z72g1VptsfhE/kEJ9CPAasSvF6NbY1ZXKH4vX+3ydDpokqmeWq5pHnJ/fsW/GdmEs53yrMi0ZZgAE4hJkMYq7OvP67n2fdlCnURZ5xVGxiTLdLrBUvg5h/5sJgOj7o5nUDrd+yLec6mpMxEKzBXhZMfQ4kuH8iWnvYRPzpcfjqOefAQr1qeclmFRUmm8VsRm2NB2+YZInPLyJCRz++9flWLN9pCX4rFlm1byLk/47LacOud26OfhEN0iPPlEgJ4bdyl9rlDcs=
