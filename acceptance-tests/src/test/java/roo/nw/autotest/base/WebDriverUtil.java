@@ -16,7 +16,7 @@
  * along with northwind-roo.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package roo.nw.autotest.common;
+package roo.nw.autotest.base;
 
 import java.io.File;
 
