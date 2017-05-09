@@ -21,18 +21,16 @@ package roo.nw.autotest.stepdefs.inventory;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.WebDriver;
 
 import cucumber.api.java.en.Then;
-import roo.nw.autotest.common.WebDriverUtil;
+import roo.nw.autotest.base.CommonWebDriver;
 import roo.nw.autotest.util.inventory.InventoryCategoryUtil;
 
 public class InventoryCategoryStepdefs {
 
 	private InventoryCategoryUtil categoryUtil;
 
-	public InventoryCategoryStepdefs() {
-		WebDriver driver = WebDriverUtil.getWebDriver();
+	public InventoryCategoryStepdefs(CommonWebDriver driver) {
 		this.categoryUtil = new InventoryCategoryUtil(driver);
 	}
 

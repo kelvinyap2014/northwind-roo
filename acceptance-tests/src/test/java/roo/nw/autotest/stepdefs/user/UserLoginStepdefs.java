@@ -20,12 +20,10 @@ package roo.nw.autotest.stepdefs.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.openqa.selenium.WebDriver;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import roo.nw.autotest.base.CommonWebDriver;
 import roo.nw.autotest.common.TestDataUtil;
-import roo.nw.autotest.common.WebDriverUtil;
 import roo.nw.autotest.util.user.UserLoginUtil;
 
 public class UserLoginStepdefs {
@@ -33,8 +31,7 @@ public class UserLoginStepdefs {
 	private UserLoginUtil userUtil;
 	private String userId;
 
-	public UserLoginStepdefs() {
-		WebDriver driver = WebDriverUtil.getWebDriver();
+	public UserLoginStepdefs(CommonWebDriver driver) {
 		this.userUtil = new UserLoginUtil(driver);
 	}
 
