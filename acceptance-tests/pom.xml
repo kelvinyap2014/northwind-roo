@@ -176,10 +176,21 @@
 			<version>${springletsVersion}</version>
 			<scope>test</scope>
         </dependency>
+    		<dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-authentication</artifactId>
+			<version>${springletsVersion}</version>
+			<scope>test</scope>
+        </dependency>
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
             <scope>test</scope>
         </dependency>
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.dataformat</groupId>
+	        <artifactId>jackson-dataformat-yaml</artifactId>
+            <scope>test</scope>
+	    </dependency>
 	</dependencies>
 </project>

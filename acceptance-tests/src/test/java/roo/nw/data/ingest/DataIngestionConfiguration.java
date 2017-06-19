@@ -26,12 +26,13 @@ import org.springframework.context.annotation.PropertySource;
 
 /**
  * Primary purpose is to get an EntityManager
+ * and dependencies injections.
  */
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
 @PropertySource("classpath:application.properties")
-@EntityScan(basePackages={"roo.nw.model"})
+@EntityScan(basePackages={"roo.nw.model", "io.springlets.security.jpa.domain"})
 public class DataIngestionConfiguration {
 
 }

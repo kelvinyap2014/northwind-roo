@@ -20,20 +20,23 @@ package roo.nw.data.ingest;
 
 import java.util.Arrays;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Ingest test data.
  */
 public class DataIngestionApplication {
-	private static final Logger LOG = LoggerFactory.getLogger(DataIngestionApplication.class);
+	private static final Log LOG = LogFactory.getLog(DataIngestionApplication.class);
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				DataIngestionConfiguration.class);
 		logAllBeans(context);
+		
+		DataIngestionExecutor executor = context.getBean(DataIngestionExecutor.class);
+		executor.run();
 	}
 
 	private static void logAllBeans(AnnotationConfigApplicationContext context) {
