@@ -69,6 +69,11 @@
             <artifactId>hsqldb</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <scope>provided</scope>
+        </dependency>
     <dependency>
             <groupId>io.springlets</groupId>
             <artifactId>springlets-data-jpa</artifactId>

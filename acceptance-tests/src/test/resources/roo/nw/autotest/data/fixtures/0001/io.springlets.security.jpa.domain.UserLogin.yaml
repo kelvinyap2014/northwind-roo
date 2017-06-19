@@ -1,0 +1,14 @@
+
+- username: user
+  password: $2a$10$BZlggkRWl.1Rdm4BgqgI7OibEZm1VV.kuVHvjTtLIxPEBfpLM5ZGW
+  fromDate: 2017-05-01
+  thruDate: 2099-05-01
+  locked: false
+  needChangePassword: false
+  
+- username: admin
+  password: $2a$10$BZlggkRWl.1Rdm4BgqgI7OibEZm1VV.kuVHvjTtLIxPEBfpLM5ZGW
+  fromDate: 2012-02-08
+  thruDate: 2099-05-01
+  locked: false
+  needChangePassword: false

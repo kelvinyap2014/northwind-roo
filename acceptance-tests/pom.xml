@@ -1,16 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- Spring IO Platform is the parent of the generated application to be able to
+    use Spring Boot and all its default configuration -->
+  <parent>
+    <groupId>io.spring.platform</groupId>
+    <artifactId>platform-bom</artifactId>
+    <version>Athens-RELEASE</version>
+    <relativePath/>
+  </parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>roo.nw</groupId>
 	<artifactId>acceptance-tests</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>${nwVersion}</version>
 	<name>northwind-roo acceptance tests</name>
 	<description>Acceptance tests based on Cucumber and Selenium Driver</description>
 	<properties>
+		<nwVersion>1.0.0.BUILD-SNAPSHOT</nwVersion>
 		<seleniumVersion>3.4.0</seleniumVersion>
 		<cucumberJvmVersion>1.2.5</cucumberJvmVersion>
 		<cucumberReportingVersion>3.7.0</cucumberReportingVersion>
 		<cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
+    		<springBootVersion>1.4.1.RELEASE</springBootVersion>
+    		<springletsVersion>1.2.0.RC1</springletsVersion>
 	</properties>
 	<build>
 		<plugins>
@@ -49,6 +60,7 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.5</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -122,5 +134,63 @@
 			<version>21.0</version>
 			<scope>test</scope>
 		</dependency>
+		 <dependency>
+            <groupId>roo.nw</groupId>
+            <artifactId>repository</artifactId>
+			<version>${nwVersion}</version>
+			<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+			<version>${springBootVersion}</version>
+			<scope>test</scope>
+        </dependency>
+    		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${springBootVersion}</version>
+			<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>${springBootVersion}</version>
+			<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+			<version>${springBootVersion}</version>
+			<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-boot-starter-data-jpa</artifactId>
+			<version>${springletsVersion}</version>
+			<scope>test</scope>
+        </dependency>
+    		<dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-data-commons</artifactId>
+			<version>${springletsVersion}</version>
+			<scope>test</scope>
+        </dependency>
+    		<dependency>
+            <groupId>io.springlets</groupId>
+            <artifactId>springlets-authentication</artifactId>
+			<version>${springletsVersion}</version>
+			<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <scope>test</scope>
+        </dependency>
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.dataformat</groupId>
+	        <artifactId>jackson-dataformat-yaml</artifactId>
+            <scope>test</scope>
+	    </dependency>
 	</dependencies>
 </project>
