@@ -59,7 +59,11 @@ public class WebDriverUtil {
 			driverPath = new File(firefoxDir, "geckodriver-v0.16.1-linux64").getAbsolutePath();
 		} else if (os.indexOf("win") >= 0) {
 			// Windows
-			driverPath = new File(firefoxDir, "geckodriver-v0.16.1-win64.exe").getAbsolutePath();
+			if("x86".equals(System.getProperty("os.arch"))) {
+				driverPath = new File(firefoxDir, "geckodriver-v0.16.1-win32.exe").getAbsolutePath();
+			} else {
+				driverPath = new File(firefoxDir, "geckodriver-v0.16.1-win64.exe").getAbsolutePath();
+			}
 		}
 		System.setProperty("webdriver.gecko.driver", driverPath);
 	}
