@@ -53,6 +53,15 @@
 					<skippedFails>true</skippedFails>
 				</configuration>
 			</plugin>
+		      <plugin>
+		         <groupId>org.codehaus.mojo</groupId>
+		         <artifactId>exec-maven-plugin</artifactId>
+		         <version>1.6.0</version>
+		         <configuration>
+		            <mainClass>roo.nw.data.ingest.DataIngestionApplication</mainClass>
+		            <classpathScope>test</classpathScope>
+		         </configuration>
+		      </plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -112,7 +121,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
+			<artifactId>selenium-api</artifactId>
+			<version>${seleniumVersion}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
 			<version>${seleniumVersion}</version>
 			<scope>test</scope>
 		</dependency>
@@ -125,7 +140,7 @@
 		<dependency>
 			<groupId>ru.stqa.selenium</groupId>
 			<artifactId>webdriver-factory</artifactId>
-			<version>4.0</version>
+			<version>4.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

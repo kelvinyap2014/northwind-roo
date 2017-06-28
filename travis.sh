@@ -1,19 +1,13 @@
 #!/bin/sh
 
-cd app
+BASE_DIR=`pwd`
 
-if [ "${TRAVIS_PULL_REQUEST}" != "false" ] 
-then
-    echo "Running build and Sonar analysis for Pull Request '${TRAVIS_PULL_REQUEST}'"
-    ./mvnw clean test sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.analysis.mode=preview
-elif [ "${TRAVIS_BRANCH}" = "master" ]
-then
-    echo "Running build and Sonar analysis for ${TRAVIS_BRANCH} branch"
-    ./mvnw clean test sonar:sonar \
-        -Dsonar.host.url=https://sonarqube.com \
-        -Dsonar.login=${SONAR_TOKEN} \
-        -Dsonar.organization=kelvinyap2014-github
-else
-    echo "Running build for ${TRAVIS_BRANCH} branch"
-	./mvnw clean test
-fi
+cd "$BASE_DIR/scripts" && \
+chmod a+x *.sh && \
+bash run-unit-test-and-sonar.sh && \
+cd "$BASE_DIR/scripts" && \
+bash ingest-data.sh && \
+cd "$BASE_DIR/scripts" && \
+bash start-app-background.sh && \
+cd "$BASE_DIR/scripts" && \
+bash run-acceptance-tests.sh
