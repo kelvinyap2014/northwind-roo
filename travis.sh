@@ -8,6 +8,6 @@ bash run-unit-test-and-sonar.sh && \
 cd "$BASE_DIR/scripts" && \
 bash ingest-data.sh && \
 cd "$BASE_DIR/scripts" && \
-bash start-app-background.sh && \
+bash start-app-test-background.sh && \
 cd "$BASE_DIR/scripts" && \
 bash run-acceptance-tests.sh
