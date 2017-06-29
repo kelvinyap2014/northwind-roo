@@ -24,7 +24,9 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(tags = { "@sanity", "~@wip" })
+@CucumberOptions(tags = { "@sanity", "~@wip" }, format = { "pretty",
+	    "html:target/site/cucumber-pretty",
+	    "json:target/cucumber.json" })
 public class SanityTests {
 
 }

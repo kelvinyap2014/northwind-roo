@@ -19,7 +19,7 @@
 		<seleniumVersion>3.4.0</seleniumVersion>
 		<cucumberJvmVersion>1.2.5</cucumberJvmVersion>
 		<cucumberReportingVersion>3.7.0</cucumberReportingVersion>
-		<cucumberOutputDir>${project.build.directory}/cucumber</cucumberOutputDir>
+		<cucumberOutputDir>${project.build.directory}/site/cucumber-reports</cucumberOutputDir>
     		<springBootVersion>1.4.1.RELEASE</springBootVersion>
     		<springletsVersion>1.2.0.RC1</springletsVersion>
 	</properties>
@@ -37,21 +37,23 @@
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
 				<version>${cucumberReportingVersion}</version>
-				<executions>
-					<execution>
-						<id>generateReport</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<projectName>Cucumber Test</projectName>
-					<outputDirectory>${cucumberOutputDir}</outputDirectory>
-					<cucumberOutput>${cucumberOutputDir}</cucumberOutput>
-					<parallelTesting>false</parallelTesting>
-					<skippedFails>true</skippedFails>
-				</configuration>
+		        <executions>
+		          <execution>
+		            <id>execution</id>
+		            <phase>verify</phase>
+		            <goals>
+		              <goal>generate</goal>
+		            </goals>
+		            <configuration>
+		              <projectName>northwind-roo acceptance tests</projectName>
+		              <outputDirectory>${cucumberOutputDir}</outputDirectory>
+		              <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+		              <skippedFails>true</skippedFails>
+		              <enableFlashCharts>false</enableFlashCharts>
+		              <buildNumber>1</buildNumber>
+		            </configuration>
+		          </execution>
+		        </executions>
 			</plugin>
 		      <plugin>
 		         <groupId>org.codehaus.mojo</groupId>
