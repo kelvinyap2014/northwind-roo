@@ -27,3 +27,13 @@ This is an academic research project of [Northwind database](http://old.wiki.rem
 1. `./start-app-test.sh`, keep it active
 1. Browse `http://localhost:8080/`, login with user name `user` or `admin`, password is `secret`
 1. `./run-acceptance-tests.sh`, find the reports in acceptance-tests/target/site
+
+### Running Docker image
+1. Pre-requisite - [Docker](https://www.docker.com/community-edition#/download)
+1. `docker run -p 4000:8080 kelvinyap2014/northwind-roo`
+1. Browse `http://localhost:4000/`, login with credentials recommended on screen
+
+### Building Docker image
+1. Pre-requisite - [Docker](https://www.docker.com/community-edition#/download)
+1. `cd docker`
+1. `docker build -t northwind-roo .`
