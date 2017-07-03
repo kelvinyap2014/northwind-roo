@@ -8,3 +8,4 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+/ajcore.20170702.075214.137.txt
