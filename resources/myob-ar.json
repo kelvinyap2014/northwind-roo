@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "7df29aa9-33fw-aaaa-xxx7-9d9deda88913",
+    "Name": "Monkey Ltd",
+    "LibraryPath": "Monkey Ltd",
+    "ProductVersion": "2018.3",
+    "ProductLevel": {
+      "Code": 30,
+      "Name": "Plus"
+    },
+    "CheckedOutDate": null,
+    "CheckedOutBy": null,
+    "Uri": "https://ar1.api.myob.com/accountright/1111111-sdfdsf-ddd-hfhfg-fghgh6567df543",
+    "Country": "AU",
+    "LauncherId": "bd0ef7bc-dc70-4c67-xxxx-023aded4d420",
+    "SerialNumber": "61xxxxxxxxxx"
+  },
+  {
+    "Id": "2df29aa9-33fw-aaaa-xxx7-9d9deda88913",
+    "Name": "Dragon Unlimited",
+    "LibraryPath": "Dragon Unlimited",
+    "ProductVersion": "2018.3",
+    "ProductLevel": {
+      "Code": 29,
+      "Name": "Standard"
+    },
+    "CheckedOutDate": null,
+    "CheckedOutBy": null,
+    "Uri": "https://ar2.api.myob.com/accountright/2222222-67jkj67-7jhjh-okjljkkkl-9d9deda88913",
+    "Country": "AU",
+    "LauncherId": "f5272ca1-6520-41f4-xxx-0246726fc218",
+    "SerialNumber": "61xxxxxxxxxx"
+  }
+]
