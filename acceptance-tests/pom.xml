@@ -20,7 +20,7 @@
 		<cucumberJvmVersion>1.2.5</cucumberJvmVersion>
 		<cucumberReportingVersion>3.7.0</cucumberReportingVersion>
 		<cucumberOutputDir>${project.build.directory}/site/cucumber-reports</cucumberOutputDir>
-    		<springBootVersion>1.4.1.RELEASE</springBootVersion>
+    		<springBootVersion>2.5.12</springBootVersion>
     		<springletsVersion>1.2.0.RC1</springletsVersion>
 	</properties>
 	<build>
